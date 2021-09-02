@@ -1,0 +1,125 @@
+const [selectedFile, setSelectedFile] = useState(null);
+  const [post, setPost] = useState({});
+
+  let imageService = new ImageService();
+  let postService = new PostService();
+
+  let { id } = useParams();
+  let history = useHistory();
+
+  useEffect(() => {
+    postService
+      .findById(parseInt(id))
+      .then((result) => setPost(result.data.data));
+  }, []);
+
+  const onFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+    console.log(selectedFile);
+  };
+
+  const onFileUpload = () => {
+    const formData = new FormData();
+    formData.append("file", selectedFile, selectedFile.name);
+    console.log(formData);
+    if (post.image) {
+      imageService.update(post.id, formData);
+    } else {
+      imageService.add(post.id, formData);
+    }
+  };
+
+  const fileData = () => {
+    if (selectedFile) {
+      return (
+        <div>
+          <h2>Dosya Detayları:</h2>
+          <p>Dosya Adı: {selectedFile.name}</p>
+          <p>Dosya Türü: {selectedFile.type}</p>
+          <p>
+            Son Değiştirilme Tarihi:{" "}
+            {selectedFile.lastModifiedDate.toDateString()}
+          </p>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <h4>Yükle düğmesine basmadan önce bir fotoğraf seçiniz!</h4>
+        </div>
+      );
+    }
+  };
+
+
+------------------------------------------------------------------------------------------------------------
+  const uploadImage = (file) => {
+    if (post.image) {
+      imageService.update(parseInt(post.id), file);
+    } else {
+      imageService.add(parseInt(post.id), file);
+    }
+  };
+
+
+  <Segment secondary>
+        <h1>Görsel Yükle</h1>
+        <Label>
+          <Input type="file" onChange={onFileChange} />
+        </Label>
+        <Segment>{fileData()}</Segment>
+        <Button secondary onClick={onFileUpload}>
+          Yükle!
+        </Button>
+
+        {/* //UploadFile Component */}
+        {/* <UploadImage uploadButtonText="Fotoğraf Seç" actionButtonText="Fotoğrafı Yükle" uploadAction={uploadImage} /> */}
+      </Segment>
+
+-------------------------------------------------------------------
+
+ const [fileInputState, setFileInputState] = useState('')
+  const [selectedFile, setSelectedFile] = useState('')
+  const [previewSource, setPreviewSource] = useState()
+
+  const handleFileInputChange = (e) => {
+    const file = e.target.files[0];
+    previewFile(file);
+  }
+
+  const previewFile = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setPreviewSource(reader.result)
+    }
+  }
+
+  const handleSubmitFile = (e) => {
+    console.log("submitting")
+    e.preventDefault();
+    if(!previewSource) return;
+    uploadImage(previewSource);
+  }
+
+  const uploadImage = async (base64EncodedImage) => {
+    try {
+      await fetch('api/upload',{
+        method: 'POST',
+        body: JSON.stringify({data : base64EncodedImage}),
+        headers: {'Content-type' : 'application/json'}
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+
+      <h1>Upload</h1>
+      <form onSubmit={handleSubmitFile} className="form">
+        <input type="file" name="image" onChange={handleFileInputChange} value={fileInputState} className="form-input"></input>
+        <button className="btn" type="submit">Gönder</button>
+      </form>
+      {previewSource && (
+        <img src={previewSource} alt="chosen" style={{height: '300px'}} />
+      )}
