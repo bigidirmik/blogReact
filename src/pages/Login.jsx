@@ -30,8 +30,8 @@ export default function Login() {
     userService.getByEmail(values.email).then(result=>setUser(result.data.data))
     if(user){
       console.log("Email Doğru")
-      user.password==values.password?console.log("Şifre Doğru"):console.log("Şifre Hatalı")
-      if (user.password==values.password) {
+      user.password===values.password?console.log("Şifre Doğru"):console.log("Şifre Hatalı")
+      if (user.password===values.password) {
         handleLogin()
       }
     }else{
