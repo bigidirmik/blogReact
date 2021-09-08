@@ -10,9 +10,10 @@ export default function Navi() {
   const { userInitials } = useSelector((state) => state.user);
 
   const [categories, setCategories] = useState([]);
-  
+
+  let categoryService = new CategoryService();
+
   useEffect(() => {
-    let categoryService = new CategoryService();
     categoryService
       .getByIsActive(true)
       .then((result) => setCategories(result.data.data));
