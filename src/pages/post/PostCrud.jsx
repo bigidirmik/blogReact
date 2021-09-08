@@ -16,7 +16,7 @@ export default function PostCrud() {
     categoryService
       .getCategories()
       .then((result) => setCategories(result.data.data));
-  }, []);
+  },[]);
 
   function handleDelete(id) {
     postService.deleteById(id);

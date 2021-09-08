@@ -12,7 +12,7 @@ export default function CategoryCrud() {
     categoryService
       .getCategories()
       .then((result) => setCategories(result.data.data));
-  }, [categories,handleCheckbox]);
+  },[]);
 
   function handleDelete(id) {
       categoryService.deleteById(id)

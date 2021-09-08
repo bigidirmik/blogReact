@@ -28,7 +28,7 @@ export default function PostAdd() {
     categoryService
       .findById(id)
       .then((result) => setCategory(result.data.data));
-  }, []);
+  },[]);
 
   function handleAdd(values) {
     postService.add(id, values);

@@ -25,7 +25,7 @@ export default function PostUpdate() {
     postService
       .findById(parseInt(id))
       .then((result) => setPost(result.data.data));
-  }, []);
+  },[]);
 
   function handleUpdate(values) {
     postService.update(id, values.title, values.content);

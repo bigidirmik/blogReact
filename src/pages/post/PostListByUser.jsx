@@ -23,7 +23,9 @@ export default function PostListByUser() {
                             <Header.Content as={NavLink} to={`/posts/${post.id}`} style={{color:"black"}}>{post.title}</Header.Content>
                             <Header.Subheader style={{float:"right"}}>{post.createDate} by
                             <Link to={`/posts/user/${post.user.id}`}> {post.user.firstName}</Link></Header.Subheader>
-                            <Segment><Image centered src={post.image.url} /></Segment>
+                            {post.image?
+                            <Segment><Image centered src={post.image.url}/></Segment>
+                            :console.log(post.title+" başlığı bir görsele sahip değil!")}
                         </Header>
                         <p>{post.content}</p>
                         <Divider style={{marginTop:"5em"}}/>

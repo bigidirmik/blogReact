@@ -15,7 +15,7 @@ export default function ImageAdd() {
 
   useEffect(() => {
     imageService.getByPostId(id).then(result=>setImage(result.data.data))
-  }, [image])
+  },[])
 
   //
 

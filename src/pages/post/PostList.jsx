@@ -12,7 +12,7 @@ export default function PostList() {
   useEffect(() => {
     let postService = new PostService();
     postService.getByIsActive(true).then((result) => setPosts(result.data.data));
-  }, []);
+  },[]);
 
   return (
     <div className="Post-list">

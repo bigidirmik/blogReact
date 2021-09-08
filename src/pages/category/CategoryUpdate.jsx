@@ -24,11 +24,11 @@ export default function CategoryUpdate() {
 
   useEffect(() => {
     categoryService.findById(id).then(result=>setCategory(result.data.data))
-}, [])
+},[])
 
   function handleUpdate(values) {
     categoryService.update(id,values.categoryName)
-    history.push("/categories")
+    history.push("/categories-crud")
   }
 
   return (

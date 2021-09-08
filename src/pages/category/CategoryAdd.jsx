@@ -18,7 +18,7 @@ export default function CategoryAdd() {
   function handleAdd(values) {
     let categoryService = new CategoryService();
     categoryService.add(values)
-    history.push("/")
+    history.push("/categories-crud")
   }
 
   return (
