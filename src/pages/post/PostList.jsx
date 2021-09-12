@@ -9,6 +9,8 @@ export default function PostList() {
 
   const [posts, setPosts] = useState([initialState]);
 
+  const banner = Banner;
+
   useEffect(() => {
     let postService = new PostService();
     postService.getByIsActive(true).then((result) => setPosts(result.data.data));
@@ -22,6 +24,7 @@ export default function PostList() {
             <Header as="h1" size="huge">
               <Header.Content>Futbol Blog</Header.Content>
               <Header.Subheader>Futbol ile ilgili her şey!</Header.Subheader>
+              <Header.Image src="../../banner.jpg"/>
             </Header>
           </Segment>
         </Grid.Row>
