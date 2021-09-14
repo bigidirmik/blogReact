@@ -2,8 +2,8 @@ import axios from "axios";
 
 export default class CommentService {
 
-    add(postId,values){
-        return axios.post("https://blog-spring-github.herokuapp.com/api/comments/add?postId="+postId,values)
+    add(content,email,nick,postId){
+        return axios.post("https://blog-spring-github.herokuapp.com/api/comments/add?content="+content+"&email="+email +"&nick="+nick+"&postId="+postId)
     }
 
     getComments(){

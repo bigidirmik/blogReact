@@ -6,6 +6,6 @@ export default function HRMSTextArea({ ...props }) {
   const [field, meta] = useField(props);
 
   return (
-      <FormField fluid error={meta.touched && !!meta.error} {...field} {...props} control={TextArea}/>
+      <FormField error={meta.touched && !!meta.error} {...field} {...props} control={TextArea}/>
   );
 }

@@ -2,32 +2,25 @@ import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Divider, Grid, Header, Image, Segment } from "semantic-ui-react";
 import PostService from "../../services/postService";
+import Banner from "../../layouts/banner/Banner";
 
 export default function PostList() {
-
-  const initialState = {category:{active:""}}
+  const initialState = { category: { active: "" } };
 
   const [posts, setPosts] = useState([initialState]);
 
-  const banner = Banner;
-
   useEffect(() => {
     let postService = new PostService();
-    postService.getByIsActive(true).then((result) => setPosts(result.data.data));
-  },[]);
+    postService
+      .getByIsActive(true)
+      .then((result) => setPosts(result.data.data));
+  }, []);
 
   return (
     <div className="Post-list">
+      <Banner />
+
       <Grid container stackable>
-        <Grid.Row centered>
-          <Segment basic>
-            <Header as="h1" size="huge">
-              <Header.Content>Futbol Blog</Header.Content>
-              <Header.Subheader>Futbol ile ilgili her şey!</Header.Subheader>
-              <Header.Image src="../../banner.jpg"/>
-            </Header>
-          </Segment>
-        </Grid.Row>
         <Grid.Row>
           {posts.map((post) =>
             post.id ? (
@@ -37,33 +30,39 @@ export default function PostList() {
                 textAlign="justified"
                 style={{ marginTop: "5em" }}
               >
-                <Header size="large" as="h2" textAlign="justified">
-                  <Header.Content
-                    as={NavLink}
-                    to={`/posts/${post.id}`}
-                    style={{ color: "black" }}
-                  >
-                    {post.title}
-                  </Header.Content>
-                  <Header.Subheader style={{float:"right"}}>
-                    {post.createDate} by
-                    <Link to={`/posts/user/${post.user.id}`}>
-                      {" "}
-                      {post.user.firstName}
-                    </Link>
-                  </Header.Subheader>
-                  {post.image?
-                  <Segment><Image centered src={post.image.url}/></Segment>
-                  :console.log(post.title+" başlığı bir görsele sahip değil!")}
-                </Header>
-                <p>{post.content}</p>
-                <Divider style={{ marginTop: "5em" }} />
+                <Segment style={{ height: "100%" }}>
+                  <Header size="large" as="h2" textAlign="justified">
+                    <Header.Content
+                      as={NavLink}
+                      to={`/posts/${post.id}`}
+                      style={{ color: "black" }}
+                    >
+                      {post.title}
+                    </Header.Content>
+                    <Header.Subheader style={{ float: "right" }}>
+                      {post.createDate} by
+                      <Link to={`/posts/user/${post.user.id}`}>
+                        {post.user.firstName}
+                      </Link>
+                    </Header.Subheader>
+                  </Header>
+
+                  {post.image && (
+                    <Image
+                      floated="left"
+                      style={{ height: "100px" }}
+                      src={post.image.url}
+                    />
+                  )}
+                  <p>{post.content}</p>
+                </Segment>
+                <Divider style={{ marginTop: "2.5em" }} />
               </Grid.Column>
             ) : null
           )}
         </Grid.Row>
-        {/* Kategoriler listesi sağda*/}
       </Grid>
+      {/* Kategoriler listesi sağda*/}
     </div>
   );
 }
