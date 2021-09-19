@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Divider, Segment } from 'semantic-ui-react';
+import { Button, Segment } from 'semantic-ui-react';
 import CommentService from '../../services/commentService'
 
 export default function CommentListByPost({postId}) {

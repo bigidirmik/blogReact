@@ -6,14 +6,14 @@ import PostService from "../../services/postService";
 export default function PostListByUser() {
   const [posts, setPosts] = useState([]);
 
-  let { id } = useParams();
+  let { userId } = useParams();
 
   useEffect(() => {
     let postService = new PostService();
     postService
-      .getByUserIdAndIsActive(id, true)
+      .getByUserIdAndIsActive(userId, true)
       .then((result) => setPosts(result.data.data));
-  }, [id]);
+  }, [userId]);
 
   return (
     <div className="Post-list">

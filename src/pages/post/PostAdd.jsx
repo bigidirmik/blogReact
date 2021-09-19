@@ -16,7 +16,7 @@ export default function PostAdd() {
     content: Yup.string().required("İçerik Zorunlu!"),
   });
 
-  let { id } = useParams();
+  let { categoryId } = useParams();
   let history = useHistory();
 
   let categoryService = new CategoryService();
@@ -26,12 +26,12 @@ export default function PostAdd() {
 
   useEffect(() => {
     categoryService
-      .findById(id)
+      .findById(categoryId)
       .then((result) => setCategory(result.data.data));
   },[]);
 
   function handleAdd(values) {
-    postService.add(id, values);
+    postService.add(categoryId, values);
     history.push("/");
   }
 

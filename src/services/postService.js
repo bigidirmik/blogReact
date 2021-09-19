@@ -26,24 +26,24 @@ export default class PostService{
         return axios.get("https://blog-spring-github.herokuapp.com/api/posts/getByUserId?userId="+userId)
     }
 
-    getById(id){
-        return axios.get("https://blog-spring-github.herokuapp.com/api/posts/getById?postId="+id)
+    getById(postId){
+        return axios.get("https://blog-spring-github.herokuapp.com/api/posts/getById?postId="+postId)
     }
 
-    findById(id){
-        return axios.get("https://blog-spring-github.herokuapp.com/api/posts/findById?id="+id)
+    findById(postId){
+        return axios.get("https://blog-spring-github.herokuapp.com/api/posts/findById?postId="+postId)
     }
 
     add(categoryId,values){
         return axios.post("https://blog-spring-github.herokuapp.com/api/posts/add?categoryId="+categoryId,values)
     }
 
-    update(id,title,content){
-        return axios.put("https://blog-spring-github.herokuapp.com/api/posts/update?content="+content+"&id="+id+"&title="+title)
+    update(postId,title,content){
+        return axios.put("https://blog-spring-github.herokuapp.com/api/posts/update?content="+content+"&postId="+postId+"&title="+title)
     }
 
-    deleteById(id){
-        return axios.delete("https://blog-spring-github.herokuapp.com/api/posts/deleteById?id="+id)
+    deleteById(postId){
+        return axios.delete("https://blog-spring-github.herokuapp.com/api/posts/deleteById?postId="+postId)
     }
 
     setActivity(postId,status){

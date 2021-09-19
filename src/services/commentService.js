@@ -10,8 +10,8 @@ export default class CommentService {
         return axios.get("https://blog-spring-github.herokuapp.com/api/comments/getAll")
     }
 
-    deleteById(id){
-        return axios.delete("https://blog-spring-github.herokuapp.com/api/comments/deleteById?id="+id)
+    deleteById(commentId){
+        return axios.delete("https://blog-spring-github.herokuapp.com/api/comments/deleteById?commentId="+commentId)
     }
 
     getByPostId(postId){

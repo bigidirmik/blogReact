@@ -19,19 +19,19 @@ export default function Dashboard() {
            <Route exact path="/" component={PostList} />
            <Route exact path="/posts" component={PostList} />
            
-           <Route exact path="/posts/:id" component={PostDetail} />
-           <Route exact path="/posts/category/:id" component={PostListByCategory} />
-           <Route exact path="/posts/user/:id" component={PostListByUser} />
+           <Route exact path="/posts/:postId" component={PostDetail} />
+           <Route exact path="/posts/category/:categoryId" component={PostListByCategory} />
+           <Route exact path="/posts/user/:userId" component={PostListByUser} />
 
            <Route exact path="/posts-crud" component={PostCrud} />
-           <Route exact path="/posts-add-to-category/:id" component={PostAdd} />
-           <Route exact path="/post-update/:id" component={PostUpdate} />
+           <Route exact path="/posts-add-to-category/:categoryId" component={PostAdd} />
+           <Route exact path="/post-update/:postId" component={PostUpdate} />
 
-           <Route exact path="/image-add/:id" component={ImageAdd} />
+           <Route exact path="/image-add-to-post/:postId" component={ImageAdd} />
            
            <Route exact path="/categories-crud" component={CategoryCrud} />
            <Route exact path="/category-add" component={CategoryAdd} />
-           <Route exact path="/category-update/:id" component={CategoryUpdate} />
+           <Route exact path="/category-update/:categoryId" component={CategoryUpdate} />
 
            <Route exact path="/login" component={Login} />
         </div>

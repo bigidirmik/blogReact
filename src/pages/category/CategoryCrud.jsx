@@ -14,8 +14,8 @@ export default function CategoryCrud() {
       .then((result) => setCategories(result.data.data));
   },[]);
 
-  function handleDelete(id) {
-      categoryService.deleteById(id)
+  function handleDelete(categoryId) {
+      categoryService.deleteById(categoryId)
   }
 
   function handleActivity(category) {

@@ -68,7 +68,7 @@ export default function PostCrud() {
                 </Table.Cell>
                 <Table.Cell> <strong>{post.active?"Aktif":"İnaktif"}</strong> = {post.title} </Table.Cell>
                 <Table.Cell collapsing>
-                  <Button fluid secondary basic icon size="small" as={NavLink} to={`/image-add/${post.id}`} >
+                  <Button fluid secondary basic icon size="small" as={NavLink} to={`/image-add-to-post/${post.id}`} >
                     <Icon name="image" />
                   </Button>
                 </Table.Cell>

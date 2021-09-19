@@ -10,24 +10,24 @@ export default class CategoryService {
         return axios.get("https://blog-spring-github.herokuapp.com/api/categories/getByIsActive?isActive="+status)
     }
 
-    getById(id){
-        return axios.get("https://blog-spring-github.herokuapp.com/api/categories/getById?id="+id)
+    getById(categoryId){
+        return axios.get("https://blog-spring-github.herokuapp.com/api/categories/getById?categoryId="+categoryId)
     }
 
-    findById(id){
-        return axios.get("https://blog-spring-github.herokuapp.com/api/categories/findById?id="+id)
+    findById(categoryId){
+        return axios.get("https://blog-spring-github.herokuapp.com/api/categories/findById?categoryId="+categoryId)
     }
 
     add(values){
         return axios.post("https://blog-spring-github.herokuapp.com/api/categories/add",values)
     }
 
-    update(id,categoryName){
-        return axios.put("https://blog-spring-github.herokuapp.com/api/categories/update?categoryName="+categoryName+"&id="+id)
+    update(categoryId,categoryName){
+        return axios.put("https://blog-spring-github.herokuapp.com/api/categories/update?categoryName="+categoryName+"&categoryId="+categoryId)
     }
 
-    deleteById(id){
-        return axios.delete("https://blog-spring-github.herokuapp.com/api/categories/deleteById?id="+id)
+    deleteById(categoryId){
+        return axios.delete("https://blog-spring-github.herokuapp.com/api/categories/deleteById?categoryId="+categoryId)
     }
 
     setActivity(categoryId,status){

@@ -2,8 +2,8 @@ import axios from "axios";
 
 export default class UserService {
 
-    getById(userId){
-        return axios.get("https://blog-spring-github.herokuapp.com/api/users/getById?userId="+userId)
+    findById(userId){
+        return axios.get("https://blog-spring-github.herokuapp.com/api/users/findById?userId="+userId)
     }
 
     getByEmail(email){

@@ -5,8 +5,8 @@ export default class ImageService {
     return axios.post("https://blog-spring-github.herokuapp.com/api/images/add?postId="+postId+"&url="+url);
   }
 
-  update(postId, url) {
-    return axios.put("https://blog-spring-github.herokuapp.com/api/images/update?postId="+postId+"&url="+url);
+  update(imageId, url) {
+    return axios.put("https://blog-spring-github.herokuapp.com/api/images/update?imageId="+imageId+"&url="+url);
   }
 
   deleteById(imageId) {
@@ -19,5 +19,5 @@ export default class ImageService {
     return axios.get(
       "https://blog-spring-github.herokuapp.com/api/images/getByPostId?postId=" + postId
     );
-  }
+  } 
 }

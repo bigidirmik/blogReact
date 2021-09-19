@@ -6,15 +6,16 @@ import { useParams } from "react-router-dom";
 import { Label, Segment } from "semantic-ui-react";
 import ImageService from "../../services/imageService";
 
+// coded for single image (refactor this image array or recode in post add page while multi upload together like multi upload paragraphs)
 export default function ImageAdd() {
 
   const [image, setImage] = useState({})
 
-  let { id } = useParams();
+  let { postId } = useParams();
   let imageService = new ImageService();
 
   useEffect(() => {
-    imageService.getByPostId(id).then(result=>setImage(result.data.data))
+    imageService.getByPostId(postId).then(result=>setImage(result.data.data))
   },[])
 
   //
@@ -65,10 +66,10 @@ export default function ImageAdd() {
       const data = await response.json();
       setUploadedFile(data);
       if(image.url==null){
-        imageService.add(id,data.url)
+        imageService.add(postId,data.url)
         console.log("image url null : eklendi")
       }else{
-        imageService.update(id,data.url)
+        imageService.update(image.id,data.url)
         console.log("image url var : güncellendi")
       }
     });

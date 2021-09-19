@@ -16,18 +16,18 @@ export default function CategoryUpdate() {
 
   let categoryService = new CategoryService();
 
-  let {id} = useParams();
+  let {categoryId} = useParams();
 
   let history = useHistory();
 
   const [category, setCategory] = useState({})
 
   useEffect(() => {
-    categoryService.findById(id).then(result=>setCategory(result.data.data))
+    categoryService.findById(categorId).then(result=>setCategory(result.data.data))
 },[])
 
   function handleUpdate(values) {
-    categoryService.update(id,values.categoryName)
+    categoryService.update(categoryId,values.categoryName)
     history.push("/categories-crud")
   }
 

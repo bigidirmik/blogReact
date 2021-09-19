@@ -6,14 +6,14 @@ import PostService from "../../services/postService";
 export default function PostListByCategory() {
   const [posts, setPosts] = useState([]);
 
-  let { id } = useParams();
+  let { categoryId } = useParams();
 
   useEffect(() => {
     let postService = new PostService();
     postService
-      .getByCategoryIdAndIsActive(id, true)
+      .getByCategoryIdAndIsActive(categoryId, true)
       .then((result) => setPosts(result.data.data));
-  }, [id]);
+  }, [categoryId]);
 
   return (
     <div className="Post-list">

@@ -15,14 +15,14 @@ export default function PostDetail() {
     },
   });
 
-  let { id } = useParams();
+  let { postId } = useParams();
 
   useEffect(() => {
     let postService = new PostService();
     postService
-      .findById(parseInt(id))
+      .findById(parseInt(postId))
       .then((result) => setPost(result.data.data));
-  }, [id]);
+  }, [postId]);
 
   return (
     <div className="Post-list">
