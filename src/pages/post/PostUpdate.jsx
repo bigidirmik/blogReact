@@ -16,19 +16,20 @@ export default function PostUpdate() {
     content: Yup.string().required("İçerik Zorunlu!"),
   });
 
-  let { id } = useParams();
+  let { postId } = useParams();
   let history = useHistory();
 
-  let postService = new PostService();
+  let _postService = new PostService();
 
   useEffect(() => {
+    let postService = new PostService();
     postService
-      .findById(parseInt(id))
+      .findById(parseInt(postId))
       .then((result) => setPost(result.data.data));
-  },[]);
+  },[postId]);
 
   function handleUpdate(values) {
-    postService.update(id, values.title, values.content);
+    _postService.update(postId, values.title, values.content);
     history.push("/");
   }
 

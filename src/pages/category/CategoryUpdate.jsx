@@ -14,7 +14,7 @@ export default function CategoryUpdate() {
     categoryName: Yup.string().required("Kategori Adı Zorunlu!"),
   });
 
-  let categoryService = new CategoryService();
+  let _categoryService = new CategoryService();
 
   let {categoryId} = useParams();
 
@@ -23,11 +23,12 @@ export default function CategoryUpdate() {
   const [category, setCategory] = useState({})
 
   useEffect(() => {
-    categoryService.findById(categorId).then(result=>setCategory(result.data.data))
-},[])
+    let categoryService = new CategoryService();
+    categoryService.findById(categoryId).then(result=>setCategory(result.data.data))
+},[categoryId])
 
   function handleUpdate(values) {
-    categoryService.update(categoryId,values.categoryName)
+    _categoryService.update(categoryId,values.categoryName)
     history.push("/categories-crud")
   }
 

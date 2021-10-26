@@ -12,11 +12,13 @@ export default function ImageAdd() {
   const [image, setImage] = useState({})
 
   let { postId } = useParams();
-  let imageService = new ImageService();
+  
+  
 
   useEffect(() => {
+    let imageService = new ImageService();
     imageService.getByPostId(postId).then(result=>setImage(result.data.data))
-  },[])
+  },[postId])
 
   //
 
@@ -49,6 +51,7 @@ export default function ImageAdd() {
 
   //
   const onDrop = useCallback((acceptedFiles) => {
+    let _imageService = new ImageService();
     const url = `https://api.cloudinary.com/v1_1/${NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`;
     acceptedFiles.forEach(async (acceptedFile) => {
       const formData = new FormData();
@@ -66,14 +69,14 @@ export default function ImageAdd() {
       const data = await response.json();
       setUploadedFile(data);
       if(image.url==null){
-        imageService.add(postId,data.url)
+        _imageService.add(postId,data.url)
         console.log("image url null : eklendi")
       }else{
-        imageService.update(image.id,data.url)
+        _imageService.update(image.id,data.url)
         console.log("image url var : güncellendi")
       }
     });
-  }, []);
+  }, [NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET,image.id,image.url,postId]);
 
   //
   const { getRootProps, getInputProps, isDragActive } = useDropzone({

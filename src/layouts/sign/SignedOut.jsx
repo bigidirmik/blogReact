@@ -5,7 +5,7 @@ import { Button } from 'semantic-ui-react'
 export default function SignedOut() {
     return (
         <div>
-            <Button icon="user secret" inverted as={NavLink} to="/" />
+            <Button icon="user secret" inverted as={NavLink} to="/login" />
         </div>
     )
 }

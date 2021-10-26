@@ -6,13 +6,13 @@ import PostService from "../../services/postService";
 
 export default function PostCrud() {
   const [categories, setCategories] = useState([]);
-
-  let categoryService = new CategoryService();
+  
   let postService = new PostService();
 
   let history = useHistory();
 
   useEffect(() => {
+    let categoryService = new CategoryService();
     categoryService
       .getCategories()
       .then((result) => setCategories(result.data.data));

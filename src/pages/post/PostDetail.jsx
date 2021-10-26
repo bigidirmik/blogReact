@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { Divider, Grid, Header, Image, Segment } from "semantic-ui-react";
+import { Grid, Header, Image, Segment } from "semantic-ui-react";
 import PostService from "../../services/postService";
 import CommentAdd from "./CommentAdd";
 import CommentListByPost from "./CommentListByPost";

@@ -6,23 +6,24 @@ import CategoryService from "../../services/categoryService";
 export default function CategoryCrud() {
   const [categories, setCategories] = useState([]);
 
-  let categoryService = new CategoryService();
+  let _categoryService = new CategoryService();
 
   useEffect(() => {
+    let categoryService = new CategoryService();
     categoryService
       .getCategories()
       .then((result) => setCategories(result.data.data));
-  },[]);
+  },[categories]);
 
   function handleDelete(categoryId) {
-      categoryService.deleteById(categoryId)
+    _categoryService.deleteById(categoryId)
   }
 
   function handleActivity(category) {
       if(category.active){
-        categoryService.setActivity(category.id,false)
+        _categoryService.setActivity(category.id,false)
       }else{
-        categoryService.setActivity(category.id,true)
+        _categoryService.setActivity(category.id,true)
       } 
   }
 

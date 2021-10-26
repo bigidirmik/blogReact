@@ -21,7 +21,6 @@ export default function CommentAdd({ postId }) {
 
   function handleAdd(values) {
     commentService.add(values.content,values.email,values.nick,postId)
-    console.log(values.content,values.email,values.nick,postId);
     history.push(`/posts/${postId}`)
   }
 

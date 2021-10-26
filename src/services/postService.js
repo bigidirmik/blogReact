@@ -34,8 +34,8 @@ export default class PostService{
         return axios.get("https://blog-spring-github.herokuapp.com/api/posts/findById?postId="+postId)
     }
 
-    add(categoryId,values){
-        return axios.post("https://blog-spring-github.herokuapp.com/api/posts/add?categoryId="+categoryId,values)
+    add(categoryId,userId,values){
+        return axios.post("https://blog-spring-github.herokuapp.com/api/posts/add?categoryId="+categoryId+"&userId="+userId,values)
     }
 
     update(postId,title,content){

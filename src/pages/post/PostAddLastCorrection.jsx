@@ -1,22 +1,18 @@
-import { FieldArray, Form, Formik } from "formik";
+import { Field, FieldArray, Form, Formik } from "formik";
 import * as Yup from "yup";
 import React, { useEffect, useState } from "react";
 import MyInput from "../../utilities/customFormControls/MyInput";
 import MyTextArea from "../../utilities/customFormControls/MyTextArea";
-import { Button, Segment } from "semantic-ui-react";
+import { Button, Divider, Segment } from "semantic-ui-react";
 import { useParams } from "react-router-dom";
 import CategoryService from "../../services/categoryService";
-import PostService from "../../services/postService";
-import { useSelector } from "react-redux";
 
 export default function PostAdd() {
-  const { userInitials } = useSelector((state) => state.user);
-  let userId = userInitials[0].user ? userInitials[0].user.id : null;
+  // const { userInitials } = useSelector((state) => state.user);
+  // let userId = userInitials[0].user ? userInitials[0].user.id : null;
 
   let { categoryId } = useParams();
   const [category, setCategory] = useState({});
-
-  let postService = new PostService();
 
   const initialValues = {
     title: "",
@@ -33,10 +29,6 @@ export default function PostAdd() {
     ),
   });
 
-  function handleAdd(values) {
-    postService.add(categoryId,userId,values);
-  }
-
   useEffect(() => {
     let categoryService = new CategoryService();
     categoryService
@@ -44,7 +36,6 @@ export default function PostAdd() {
       .then((result) => setCategory(result.data.data));
   }, [categoryId]);
 
-  // userID null ise history push /login eklenecek
   return (
     <div className="Post-add" style={{ maxWidth: "100%", margin: "5em auto" }}>
       <Segment secondary>{category.categoryName}</Segment>
@@ -53,7 +44,7 @@ export default function PostAdd() {
         initialValues={initialValues}
         validationSchema={schema}
         onSubmit={(values) => {
-          handleAdd(values);
+          console.log(values);
         }}
       >
         {({ values }) => (
